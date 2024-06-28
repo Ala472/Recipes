@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.request.attributes.get('_route') == 'recipe.edit' ? 'La recette ' ~ recipe.title : 'Ajouter Une Nouvelle recette SVP !!!'}} {% endblock %}
+
+{% block body %}
+    <h1>{{ app.request.attributes.get('_route') == 'recipe.edit' ? recipe.title : 'Remplir le formulaire de recette'}}</h1>
+    {{ form(form) }}
+    
+{% endblock %}

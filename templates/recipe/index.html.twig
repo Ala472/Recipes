@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les recettes{% endblock %}
+
+{% block body %}
+    <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, 
+    </p>
+    <a href="{{ url('recipe.add') }}">Ajouter nouveau recette</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes %}
+            <tr>
+                <td><a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug })}}">{{ recipe.title }}</a></td>
+                <td>
+                <a href="{{ path('recipe.edit', {id: recipe.id}) }}">Editer</a>
+                <form action="{{ path('recipe.delete', {id: recipe.id}) }}", method="post">
+
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger btn-sm">supprimer</button>
+                    
+                </form>
+                
+                </td>
+
+            </tr>
+        {% endfor %}    
+        </tbody>
+    </table>
+
+{% endblock %}
